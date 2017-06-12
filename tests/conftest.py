@@ -9,7 +9,7 @@ class WebDriver(object):
     """
 
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Firefox()
         self.driver.get("about:blank")
         self.driver.implicitly_wait(10)
         self.driver.maximize_window()
