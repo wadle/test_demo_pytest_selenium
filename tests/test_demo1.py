@@ -1,24 +1,43 @@
 import pytest
 
+data = [
+    {
+        "test_case_id": "TC1",
+        "test_input": "3+5",
+        "expected" : 8
+    },
+    {
+        "test_case_id": "TC2",
+        "test_input": "2+4",
+        "expected": 6
+    },
+    {
+        "test_case_id": "TC3",
+        "test_input": "6*9",
+        "expected": 42
+    },
+    {
+        "test_case_id": "TC4",
+        "test_input": "3+4",
+        "expected": 7
+    },
+]
+ids = [item['test_case_id'] for item in data]
 
-import random
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+
+@pytest.mark.parametrize("data_", data, ids=ids)
+def test_param(data_):
+    print(data_, '\n')
+    assert eval(data_['test_input']) == data_['expected']
 
 
-class SimpleTest(unittest.TestCase):
 
-    @unittest.skip("demonstrating skipping")
-    def test_skipped(self):
-        self.fail("shouldn't happen")
-
-
-    def test_pass(self):
-        self.assertEqual(10, 7 + 3)
-
-    def test_fail(self):
-        self.assertEqual(10, 7 + 3)
-
+#
+# @pytest.mark.parametrize("test_input,expected",[
+#     ("3+5", 8),
+#     ("2+4", 6),
+#     ("6*9", 42),
+# ])
+# def test_eval(test_input, expected):
+#     assert eval(test_input) == expected
 
